@@ -1,0 +1,102 @@
+import './style.css'
+import cryptids from './cryptids.js'
+import { getMapElement, setLayerVisible, checkProximity } from './proximityCheck.js'
+import { ensurePopup, showPopup, hidePopup } from './popUp.js'
+import "@arcgis/core/assets/esri/themes/dark/main.css";
+import "@arcgis/map-components/components/arcgis-map";
+
+// Load the cryptid data
+const TARGETS = cryptids;
+
+// The proximity threshold in meters
+const PROXIMITY_METERS = 10000;
+
+let selectedTargetKey = Object.keys(TARGETS)[0] || null;
+
+const getSelectedTargetKey = () => selectedTargetKey;
+
+const setSelectedTargetKey = (key) => {
+  if (!key || typeof key !== 'string') return false;
+  const normalized = key.toLowerCase();
+  if (!TARGETS[normalized]) return false;
+  selectedTargetKey = normalized;
+  return true;
+};
+
+const toggleHintLayer = () => {
+  const targetKey = getSelectedTargetKey();
+  const target = getSelectedTarget();
+  if (!targetKey || !target) return false;
+
+  const hashValue = decodeURIComponent(window.location.hash || '')
+    .replace(/^#/, '')
+    .toLowerCase();
+
+  const baseHash = targetKey.toLowerCase();
+  const hint1Hash = `${baseHash}-hint1`;
+  const hint2Hash = `${baseHash}-hint2`;
+
+  const showHint1 = hashValue === hint1Hash;
+  const showHint2 = hashValue === hint2Hash;
+
+  let updated = false;
+
+  if (target.hint1) {
+    updated = setLayerVisible(target.hint1, showHint1) || updated;
+  }
+
+  if (target.hint2) {
+    updated = setLayerVisible(target.hint2, showHint2) || updated;
+  }
+
+  return updated;
+};
+
+const getSelectedTarget = () => {
+  return TARGETS[getSelectedTargetKey()] || TARGETS[Object.keys(TARGETS)[0]];
+};
+
+const checkProximityAndUpdate = () => {
+  const view = getMapElement()?.view;
+  const target = getSelectedTarget();
+  if (!view || !target) return;
+
+  checkProximity({
+    view,
+    target,
+    thresholdMeters: PROXIMITY_METERS,
+    onNear: () => {
+      showPopup(target);
+      setLayerVisible(getSelectedTargetKey(), true);
+    },
+    onFar: () => {
+      hidePopup();
+      setLayerVisible(getSelectedTargetKey(), false);
+    }
+  });
+};
+
+const attachViewListeners = () => {
+  const view = getMapElement()?.view;
+
+  if (!view) {
+    return false;
+  }
+
+  view.watch("center", checkProximityAndUpdate);
+  view.watch("scale", checkProximityAndUpdate);
+  checkProximityAndUpdate();
+  ensurePopup();
+  return true;
+};
+
+if (!attachViewListeners()) {
+  const intervalId = window.setInterval(() => {
+    if (attachViewListeners()) {
+      window.clearInterval(intervalId);
+    }
+  }, 100);
+}
+
+window.addEventListener('hashchange', toggleHintLayer);
+toggleHintLayer();
