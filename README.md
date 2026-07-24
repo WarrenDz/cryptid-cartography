@@ -1,6 +1,6 @@
 # Cryptid Cartography
 
-Interactive map-based cryptid hunt built with ArcGIS map components and Vite.
+Interactive map-based cryptid hunt built with ArcGIS map components.
 
 ## Project Status
 
@@ -12,6 +12,7 @@ Rough prototype in active development.
 - Features
 - Tech Stack
 - Getting Started
+- GitHub Pages Deployment
 - Gameplay Flow
 - Project Structure
 - Data Model
