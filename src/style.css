@@ -9,6 +9,34 @@ arcgis-map {
   width: 100%;
 }
 
+#overviewScene {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  width: 250px;
+  height: 250px;
+  z-index: 20;
+  border-radius: 100px;
+  overflow: hidden;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+@media (max-width: 700px) {
+  #overviewScene {
+    width: 200px;
+    height: 200px;
+    top: 12px;
+    right: 12px;
+  }
+}
+
+
+#overviewDiv {
+  width: 200px;
+  height: 200px;
+}
+
 /* The flashlight/vignette overlay. It sits above the map and is
  punched-through with a radial gradient centered on the cursor. */
 #flashlightOverlay {

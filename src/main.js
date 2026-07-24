@@ -2,6 +2,7 @@ import './style.css'
 import cryptids from './cryptids.js'
 import { getMapElement, setLayerVisible, checkProximity } from './proximityCheck.js'
 import { ensurePopup, showPopup, hidePopup } from './popUp.js'
+import './overviewGlobe.js'
 import "@arcgis/core/assets/esri/themes/dark/main.css";
 import "@arcgis/map-components/components/arcgis-map";
 
