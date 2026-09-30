@@ -1,5 +1,7 @@
 import bigfootImage from './assets/bigfoot.jpeg';
-import mothmanImage from './assets/bigfoot.jpeg';
+import mothmanImage from './assets/mothman.jpeg';
+import chupacabraImage from './assets/chupacabra.jpeg';
+import champyImage from './assets/champy.jpeg';
 
 const cryptids = {
     bigfoot: {
