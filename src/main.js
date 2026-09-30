@@ -76,10 +76,12 @@ const toggleHintLayer = () => {
 
   if (target.hint1) {
     updated = setLayerVisible(target.hint1, showHint1) || updated;
+    console.log(`Hint 1 visibility for ${targetKey}: ${showHint1}`);
   }
 
   if (target.hint2) {
     updated = setLayerVisible(target.hint2, showHint2) || updated;
+    console.log(`Hint 2 visibility for ${targetKey}: ${showHint2}`);
   }
 
   if (showHint2) {

@@ -6,6 +6,7 @@ export const findBookmarkByName = (map, name) => {
 
   for (const bookmark of bookmarks) {
     if (String(bookmark?.name || '').toLowerCase() === normalizedName) {
+      console.log(`Found bookmark by name: ${bookmark?.name}`);
       return bookmark;
     }
   }

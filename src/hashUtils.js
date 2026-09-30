@@ -10,6 +10,7 @@ export const getTargetKeyFromHash = (targets, hashValue = getHashValue()) => {
   for (const key of Object.keys(targets)) {
     if (hashValue === key || hashValue.startsWith(`${key}-hint`)) {
       return key;
+      console.log(`Matched target key from hash: ${key}`); 
     }
   }
 
