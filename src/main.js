@@ -12,8 +12,6 @@ import "@arcgis/map-components/components/arcgis-map";
 // Load the cryptid data
 const TARGETS = cryptids;
 
-// The proximity threshold in meters
-const PROXIMITY_METERS = 10000;
 const GIVE_UP_DELAY_MS = 3000;
 
 let selectedTargetKey = Object.keys(TARGETS)[0] || null;
@@ -105,7 +103,6 @@ const checkProximityAndUpdate = () => {
   checkProximity({
     view,
     target,
-    thresholdMeters: PROXIMITY_METERS,
     onNear: () => {
       showPopup(target);
       setLayerVisible(getSelectedTargetKey(), true);
@@ -140,7 +137,16 @@ if (!attachViewListeners()) {
   }, 100);
 }
 
-window.addEventListener('hashchange', toggleHintLayer);
+window.addEventListener('hashchange', () => {
+  const hashTargetKey = getTargetKeyFromHash(TARGETS);
+  if (hashTargetKey && hashTargetKey !== getSelectedTargetKey()) {
+    setLayerVisible(getSelectedTargetKey(), false);
+    setSelectedTargetKey(hashTargetKey);
+  }
+
+  toggleHintLayer();
+  checkProximityAndUpdate();
+});
 
 const hashTargetKey = getTargetKeyFromHash(TARGETS);
 if (hashTargetKey) {

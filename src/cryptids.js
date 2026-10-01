@@ -10,8 +10,9 @@ const cryptids = {
         image: bigfootImage,
         hint1: 'bigfoot-hint1',
         hint2: 'bigfoot-hint2',
-        latitude: 47.6062,
-        longitude: -122.3321
+        latitude: 47.627206,
+        longitude: -121.153431,
+        threshold: 2000
     },
     mothman: {
         name: 'Mothman',
@@ -20,7 +21,8 @@ const cryptids = {
         hint1: 'mothman-hint1',
         hint2: 'mothman-hint2',
         latitude: 38.903831,
-        longitude: -82.075155
+        longitude: -82.075155,
+        threshold: 250
     },
     chupacabra: {
         name: 'Chupacabra',
@@ -29,7 +31,8 @@ const cryptids = {
         hint1: 'chupacabra-hint1',
         hint2: 'chupacabra-hint2',
         latitude: 19.664642,
-        longitude: -97.484251
+        longitude: -97.484251,
+        threshold: 25000
     },
     champy: {
         name: 'Lake Champlain Monster (Champy)',
@@ -38,7 +41,8 @@ const cryptids = {
         hint1: 'champy-hint1',
         hint2: 'champy-hint2',
         latitude: 44.305864,
-        longitude: -73.324522 
+        longitude: -73.324522,
+        threshold: 1500
     }
 };
 

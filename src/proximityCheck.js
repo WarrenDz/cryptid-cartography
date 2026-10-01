@@ -88,7 +88,7 @@ export const getPointCoordinates = (point) => {
   return null;
 };
 
-export const evaluateProximity = (view, target, thresholdMeters = 10000) => {
+export const evaluateProximity = (view, target, thresholdMeters = target?.threshold ?? 10000) => {
   const center = view?.center;
   const centerCoordinates = getPointCoordinates(center);
 
@@ -111,7 +111,7 @@ export const evaluateProximity = (view, target, thresholdMeters = 10000) => {
   };
 };
 
-export const checkProximity = ({ view, target, thresholdMeters = 10000, onNear, onFar }) => {
+export const checkProximity = ({ view, target, thresholdMeters, onNear, onFar }) => {
   const result = evaluateProximity(view, target, thresholdMeters);
   if (!result) return null;
 
