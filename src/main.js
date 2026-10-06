@@ -4,7 +4,7 @@ import { getMapElement, setLayerVisible, checkProximity } from './proximityCheck
 import { ensurePopup, showPopup, hidePopup } from './popUp.js'
 import './overviewGlobe.js'
 import { getHashValue, getTargetKeyFromHash } from './hashUtils.js'
-import { goToBookmarkForTarget } from './bookmarks.js'
+import { goToBookmarkByName, goToBookmarkForTarget } from './bookmarks.js'
 import { createGiveUpController } from './giveUpController.js'
 import "@arcgis/core/assets/esri/themes/dark/main.css";
 import "@arcgis/map-components/components/arcgis-map";
@@ -39,19 +39,8 @@ const giveUpController = createGiveUpController({
   },
 });
 
-const applyInitialHashTargetBookmark = (view) => {
-  const hashKey = getTargetKeyFromHash(TARGETS);
-  if (!hashKey) return;
-
-  if (!setSelectedTargetKey(hashKey)) return;
-
-  const target = TARGETS[hashKey];
-  if (!target) return;
-
-  // Only auto-goTo for a base hash like #bigfoot, not hint hashes.
-  if (getHashValue() !== hashKey) return;
-
-  goToBookmarkForTarget(view, target);
+const applyHashBookmark = (view) => {
+  return goToBookmarkByName(view, getHashValue());
 };
 
 const toggleHintLayer = () => {
@@ -123,7 +112,7 @@ const attachViewListeners = () => {
 
   view.watch("center", checkProximityAndUpdate);
   view.watch("scale", checkProximityAndUpdate);
-  view.when(() => applyInitialHashTargetBookmark(view));
+  view.when(() => applyHashBookmark(view));
   checkProximityAndUpdate();
   ensurePopup();
   return true;
@@ -146,6 +135,11 @@ window.addEventListener('hashchange', () => {
 
   toggleHintLayer();
   checkProximityAndUpdate();
+
+  const view = getMapElement()?.view;
+  if (view) {
+    view.when(() => applyHashBookmark(view));
+  }
 });
 
 const hashTargetKey = getTargetKeyFromHash(TARGETS);

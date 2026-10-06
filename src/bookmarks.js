@@ -14,10 +14,9 @@ export const findBookmarkByName = (map, name) => {
   return null;
 };
 
-export const goToBookmarkForTarget = async (view, target, suffix = '') => {
-  if (!view || !target?.name) return false;
+export const goToBookmarkByName = async (view, bookmarkName) => {
+  if (!view || !bookmarkName) return false;
 
-  const bookmarkName = `${target.name}${suffix}`;
   const bookmark = findBookmarkByName(view.map, bookmarkName);
   if (!bookmark) return false;
 
@@ -29,8 +28,14 @@ export const goToBookmarkForTarget = async (view, target, suffix = '') => {
     return true;
   } catch (error) {
     if (error?.name !== 'AbortError') {
-      console.warn(`Failed to goTo bookmark for ${target.name}:`, error);
+      console.warn(`Failed to goTo bookmark for ${bookmarkName}:`, error);
     }
     return false;
   }
+};
+
+export const goToBookmarkForTarget = async (view, target, suffix = '') => {
+  if (!target?.name) return false;
+
+  return goToBookmarkByName(view, `${target.name}${suffix}`);
 };
