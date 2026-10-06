@@ -13,10 +13,10 @@ arcgis-map {
   position: fixed;
   top: 16px;
   right: 16px;
-  width: 250px;
-  height: 250px;
+  width: 200px;
+  height: 200px;
   z-index: 20;
-  border-radius: 100px;
+  border-radius: 150px;
   overflow: hidden;
   pointer-events: none;
 }

@@ -84,23 +84,27 @@ const getSelectedTarget = () => {
   return TARGETS[getSelectedTargetKey()] || TARGETS[Object.keys(TARGETS)[0]];
 };
 
+let lastProximityState = null;
+
 const checkProximityAndUpdate = () => {
   const view = getMapElement()?.view;
+  const targetKey = getSelectedTargetKey();
   const target = getSelectedTarget();
   if (!view || !target) return;
 
-  checkProximity({
-    view,
-    target,
-    onNear: () => {
-      showPopup(target);
-      setLayerVisible(getSelectedTargetKey(), true);
-    },
-    onFar: () => {
-      hidePopup();
-      setLayerVisible(getSelectedTargetKey(), false);
-    }
-  });
+  const result = checkProximity({ view, target });
+  if (!result) return;
+
+  if (lastProximityState?.targetKey === targetKey &&
+      lastProximityState.isNear === result.isNear) return;
+
+  if (result.isNear) {
+    showPopup(target);
+  } else {
+    hidePopup();
+  }
+  setLayerVisible(targetKey, result.isNear);
+  lastProximityState = { targetKey, isNear: result.isNear };
 };
 
 const attachViewListeners = () => {
@@ -111,7 +115,6 @@ const attachViewListeners = () => {
   }
 
   view.watch("center", checkProximityAndUpdate);
-  view.watch("scale", checkProximityAndUpdate);
   view.when(() => applyHashBookmark(view));
   checkProximityAndUpdate();
   ensurePopup();
