@@ -6,7 +6,7 @@ import champyImage from './assets/champy.jpeg';
 const cryptids = {
     bigfoot: {
         name: 'Bigfoot',
-        description: 'TEMP: Bigfoot, also commonly referred to as Sasquatch, is a large, hairy, mythical humanoid creature said to inhabit forests in North America, particularly in the Pacific Northwest. Bigfoot is featured in both American and Canadian folklore, and since the mid-20th century has become a cultural icon, permeating popular culture and becoming the subject of its own distinct subculture.',
+        description: 'It’s none other than Bigfoot, also known as Sasquatch. The infamous film footage shot at this location captured a tall, hairy creature moving on two legs through the woods along a riverbank. Many cultures around the world have a similar legend of large, hairy, wild human-like beings, which perhaps helps to explain why Bigfoot became such a phenomenon in the U.S. Entire clubs are dedicated to proving the existence of Bigfoot, though they have yet to do so conclusively.',
         image: bigfootImage,
         hint1: 'bigfoot-hint1',
         hint2: 'bigfoot-hint2',
@@ -16,7 +16,7 @@ const cryptids = {
     },
     mothman: {
         name: 'Mothman',
-        description: 'TEMP: Mothman is a legendary winged creature said to haunt the forests and river valleys around Point Pleasant, West Virginia. Often described as having glowing red eyes and an unsettling presence, Mothman became famous after a series of reported sightings in the 1960s. In local lore, encounters with the creature are often seen as a warning that something unusual or significant is about to happen.',
+        description: 'Meet the Mothman, the most famous resident of Point Pleasant, West Virginia. It has been described as having a tall, slender, humanoid form, but with large wings and glowing red eyes. Though avian experts have chalked up numerous sightings over the years to various types of birds, the town fully leans into the legend. An annual Mothman Festival brings thousands of visitors to Point Pleasant — though its namesake has yet to grace the event with its presence.',
         image: mothmanImage,
         hint1: 'mothman-hint1',
         hint2: 'mothman-hint2',
@@ -26,7 +26,7 @@ const cryptids = {
     },
     chupacabra: {
         name: 'Chupacabra',
-        description: 'TEMP: Chupacabra is a cryptid from Latin American folklore, most famously associated with Puerto Rico, Mexico, and the American Southwest. Described as a strange, nocturnal creature that attacks livestock, the Chupacabra earned its name, meaning "goat-sucker," from reports of animals found mysteriously drained of blood.',
+        description: 'This pesky critter is the Chupacabra. Descriptions vary based on region. In the Southwestern United States, sightings most often take the form of a hairless, dog-like creature with large fangs. Much evidence — including purported Chupacabra corpses — suggests mangy coyotes infected with a certain parasite are responsible for so-called Chupacabra sightings.',
         image: chupacabraImage,
         hint1: 'chupacabra-hint1',
         hint2: 'chupacabra-hint2',
@@ -36,7 +36,7 @@ const cryptids = {
     },
     champy: {
         name: 'Lake Champlain Monster (Champy)',
-        description: 'TEMP: Champ, the legendary Lake Champlain Monster, is said to inhabit the deep waters of Lake Champlain along the border of New York, Vermont, and Québec. Witnesses have described a long-necked, serpentine creature surfacing briefly before disappearing beneath the lake. For more than two centuries, reports of mysterious sightings have made Champ one of North America\'s most enduring lake monster legends.',
+        description: 'This is the one and only Champy, named for its home in Lake Champlain. The mystery was rekindled in 2024 when a film crew on the lake saw a dark shape following their boat on drone footage. An academic and scientific panel has been reviewing the video and is planning to release its findings in late 2026.',
         image: champyImage,
         hint1: 'champy-hint1',
         hint2: 'champy-hint2',
