@@ -1,9 +1,11 @@
+// Decode the URL hash, remove its leading #, and normalize it to lowercase.
 export const getHashValue = () => {
   return decodeURIComponent(window.location.hash || '')
     .replace(/^#/, '')
     .toLowerCase();
 };
 
+// Resolve a target key from either its base hash or a hint-prefixed hash.
 export const getTargetKeyFromHash = (targets, hashValue = getHashValue()) => {
   if (!targets || !hashValue) return null;
 

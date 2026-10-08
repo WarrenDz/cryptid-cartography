@@ -1,7 +1,9 @@
+// Cache the map component and define the radius used for distance calculations.
 let mapElement = null;
 
 const EARTH_RADIUS_KM = 6371;
 
+// Access the map component and its underlying ArcGIS map when available.
 export const getMapElement = () => {
   if (!mapElement) {
     mapElement = document.querySelector('arcgis-map');
@@ -12,6 +14,7 @@ export const getMapElement = () => {
 
 export const getArcGISMap = () => getMapElement()?.view?.map || null;
 
+// Find a top-level layer by case-insensitive ID, title, or name.
 export const findLayerByName = (map, name) => {
   if (!map?.layers || !name) return null;
 
@@ -32,6 +35,7 @@ export const findLayerByName = (map, name) => {
   return null;
 };
 
+// Update a matching layer's visibility and report whether the update succeeded.
 export const setLayerVisible = (name, visible = true) => {
   const map = getArcGISMap();
   if (!map) return false;
@@ -54,6 +58,7 @@ export const setLayerVisible = (name, visible = true) => {
   }
 };
 
+// Calculate great-circle distance in kilometers from latitude/longitude in degrees.
 export const haversineDistanceKm = (lat1, lon1, lat2, lon2) => {
   const toRadians = (value) => (value * Math.PI) / 180;
   const dLat = toRadians(lat2 - lat1);
@@ -66,6 +71,7 @@ export const haversineDistanceKm = (lat1, lon1, lat2, lon2) => {
   return EARTH_RADIUS_KM * c;
 };
 
+// Read geographic coordinates or convert x/y values assumed to be Web Mercator.
 export const getPointCoordinates = (point) => {
   if (typeof point?.latitude === 'number' && typeof point?.longitude === 'number') {
     return {
@@ -88,6 +94,7 @@ export const getPointCoordinates = (point) => {
   return null;
 };
 
+// Compare the map center's distance to the target against a threshold in meters.
 export const evaluateProximity = (view, target, thresholdMeters = target?.threshold ?? 10000) => {
   const center = view?.center;
   const centerCoordinates = getPointCoordinates(center);
@@ -111,6 +118,7 @@ export const evaluateProximity = (view, target, thresholdMeters = target?.thresh
   };
 };
 
+// Evaluate proximity, invoke the optional near/far callback, and return the result.
 export const checkProximity = ({ view, target, thresholdMeters, onNear, onFar }) => {
   const result = evaluateProximity(view, target, thresholdMeters);
   if (!result) return null;

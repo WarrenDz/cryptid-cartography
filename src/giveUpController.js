@@ -1,3 +1,4 @@
+// Configure the delayed give-up button with target, hash, and reveal callbacks.
 export const createGiveUpController = ({
   delayMs = 3000,
   buttonId = 'give-up-button',
@@ -7,6 +8,7 @@ export const createGiveUpController = ({
 }) => {
   let timerId = null;
 
+  // Cancel a pending display timer and remove any existing button.
   const clearTimer = () => {
     if (!timerId) return;
     window.clearTimeout(timerId);
@@ -18,6 +20,7 @@ export const createGiveUpController = ({
     if (existing) existing.remove();
   };
 
+  // Create the button and connect its click to the supplied reveal callback.
   const showButton = (targetKey) => {
     removeButton();
 
@@ -36,11 +39,13 @@ export const createGiveUpController = ({
     document.body.appendChild(button);
   };
 
+  // Reset both the pending timer and the visible button.
   const clear = () => {
     clearTimer();
     removeButton();
   };
 
+  // After the delay, show the button only if this target's final hint is still active.
   const schedule = (targetKey) => {
     clear();
 
@@ -59,6 +64,7 @@ export const createGiveUpController = ({
     }, delayMs);
   };
 
+  // Expose scheduling and cleanup to the application.
   return {
     schedule,
     clear,

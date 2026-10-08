@@ -1,5 +1,7 @@
+// Track visibility so repeated hide requests can be skipped.
 let popupVisible = false;
 
+// Reuse the popup or create its markup and clear the initial animation class.
 export const ensurePopup = () => {
     let el = document.getElementById('target-popup');
     if (el) return el;
@@ -22,6 +24,7 @@ export const ensurePopup = () => {
     return el;
 };
 
+// Populate the popup with the selected cryptid's details and make it visible.
 export const showPopup = (target = {}) => {
     const el = ensurePopup();
 
@@ -32,6 +35,7 @@ export const showPopup = (target = {}) => {
     titleEl.textContent = target.name || '';
     descEl.textContent = target.description || '';
 
+    // Update the image and alternative text, or hide the image when none is provided.
     if (target.image) {
         if (imgEl.getAttribute('src') !== target.image) {
             imgEl.src = target.image;
@@ -48,6 +52,7 @@ export const showPopup = (target = {}) => {
     popupVisible = true;
 };
 
+// Hide the existing popup without removing its reusable markup.
 export const hidePopup = () => {
     if (!popupVisible) return;
     const el = document.getElementById('target-popup');

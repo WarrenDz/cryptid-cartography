@@ -1,3 +1,4 @@
+// Find a bookmark by case-insensitive name in the map's bookmark collection.
 export const findBookmarkByName = (map, name) => {
   if (!map || !name) return null;
 
@@ -14,6 +15,7 @@ export const findBookmarkByName = (map, name) => {
   return null;
 };
 
+// Animate to the bookmark's viewpoint or extent, handling navigation failures.
 export const goToBookmarkByName = async (view, bookmarkName) => {
   if (!view || !bookmarkName) return false;
 
@@ -34,6 +36,7 @@ export const goToBookmarkByName = async (view, bookmarkName) => {
   }
 };
 
+// Build a bookmark name from the cryptid's display name and an optional suffix.
 export const goToBookmarkForTarget = async (view, target, suffix = '') => {
   if (!target?.name) return false;
 

@@ -1,3 +1,4 @@
+// Register map components and import geometry, graphics, and synchronization helpers.
 import "@arcgis/map-components/components/arcgis-scene";
 import "@arcgis/map-components/components/arcgis-map";
 import Extent from "@arcgis/core/geometry/Extent.js";
@@ -8,15 +9,18 @@ import Graphic from "@arcgis/core/Graphic.js";
 import * as reactiveUtils from "@arcgis/core/core/reactiveUtils.js";
 import * as promiseUtils from "@arcgis/core/core/promiseUtils.js";
 
+// Keep the overview at a fixed globe scale and tilt.
 const OVERVIEW_SCALE = 150000000;
 const OVERVIEW_TILT = 0;
 
+// Locate the main map and overview scene before initializing synchronization.
 (async () => {
 
     const viewMapElement = document.querySelector("arcgis-map");
     const viewSceneElement = document.querySelector("arcgis-scene");
     if (!viewMapElement || !viewSceneElement) return;
 
+    // Use a transparent scene background without stars or atmosphere.
     viewSceneElement.environment = {
         background: {
             type: "color",
@@ -25,7 +29,7 @@ const OVERVIEW_TILT = 0;
         starsEnabled: false,
         atmosphereEnabled: false
     }
-    // Helper for extent calculation
+    // Define Web Mercator world bounds for clipping the main map's extent.
     const webmercatorExtent = new Extent({
         xmin: -20037508.342787,
         ymin: -20037508.342787,
@@ -34,6 +38,7 @@ const OVERVIEW_TILT = 0;
         spatialReference: SpatialReference.WebMercator,
     });
 
+    // Wait for both views before configuring the overview and its graphics.
     viewMapElement.viewOnReady(async () => {
         await viewSceneElement.viewOnReady();
 
@@ -41,6 +46,7 @@ const OVERVIEW_TILT = 0;
         const sceneView = viewSceneElement.view;
         if (!mapView || !sceneView) return;
 
+        // Disable interactive rotation, lock tilt, and remove default view controls.
         sceneView.constraints.rotationEnabled = false;
         sceneView.constraints.tilt = {
             min: OVERVIEW_TILT,
@@ -48,6 +54,7 @@ const OVERVIEW_TILT = 0;
         };
         sceneView.ui.components = []; // remove the attribution from the overview map
 
+        // Outline and shade the main map's visible area on the globe.
         const visibleAreaGraphic = new Graphic({
             geometry: null,
             symbol: {
@@ -61,6 +68,7 @@ const OVERVIEW_TILT = 0;
         });
         viewSceneElement.graphics.add(visibleAreaGraphic);
 
+        // Debounce extent updates, redraw the footprint, and recenter the globe.
         const syncFromMapExtent = promiseUtils.debounce(async () => {
             const currentExtent = mapView.extent;
             if (!currentExtent) return;
@@ -91,6 +99,7 @@ const OVERVIEW_TILT = 0;
             }
         });
 
+        // Synchronize initially and whenever the map extent or stationary state changes.
         reactiveUtils.watch(
             () => [mapView.extent, mapView.stationary],
             () => {

@@ -1,3 +1,4 @@
+// Styles, application helpers, and ArcGIS component registration.
 import './style.css'
 import cryptids from './cryptids.js'
 import { getMapElement, setLayerVisible, checkProximity } from './proximityCheck.js'
@@ -9,7 +10,7 @@ import { createGiveUpController } from './giveUpController.js'
 import "@arcgis/core/assets/esri/themes/dark/main.css";
 import "@arcgis/map-components/components/arcgis-map";
 
-// Load the cryptid data
+// Cryptid configuration and active target selection.
 const TARGETS = cryptids;
 
 const GIVE_UP_DELAY_MS = 3000;
@@ -26,6 +27,7 @@ const setSelectedTargetKey = (key) => {
   return true;
 };
 
+// Offer a reveal bookmark after the final hint's delay.
 const giveUpController = createGiveUpController({
   delayMs: GIVE_UP_DELAY_MS,
   getCurrentTargetKey: getSelectedTargetKey,
@@ -39,10 +41,12 @@ const giveUpController = createGiveUpController({
   },
 });
 
+// Navigate to the bookmark named by the current URL hash.
 const applyHashBookmark = (view) => {
   return goToBookmarkByName(view, getHashValue());
 };
 
+// Show only the active target's matching hint and manage the reveal timer.
 const toggleHintLayer = () => {
   const targetKey = getSelectedTargetKey();
   const target = getSelectedTarget();
@@ -87,6 +91,7 @@ const toggleHintLayer = () => {
   return updated;
 };
 
+// Resolve the active cryptid and update its popup and layer on proximity changes.
 const getSelectedTarget = () => {
   return TARGETS[getSelectedTargetKey()] || TARGETS[Object.keys(TARGETS)[0]];
 };
@@ -114,6 +119,7 @@ const checkProximityAndUpdate = () => {
   lastProximityState = { targetKey, isNear: result.isNear };
 };
 
+// Watch map movement and apply the initial hint and bookmark when the view is ready.
 const attachViewListeners = () => {
   const view = getMapElement()?.view;
 
@@ -131,6 +137,7 @@ const attachViewListeners = () => {
   return true;
 };
 
+// Retry listener setup until the map component exposes its view.
 if (!attachViewListeners()) {
   const intervalId = window.setInterval(() => {
     if (attachViewListeners()) {
@@ -139,6 +146,7 @@ if (!attachViewListeners()) {
   }, 100);
 }
 
+// Synchronize target selection, visibility, and navigation when the hash changes.
 window.addEventListener('hashchange', () => {
   const hashTargetKey = getTargetKeyFromHash(TARGETS);
   if (hashTargetKey && hashTargetKey !== getSelectedTargetKey()) {
@@ -155,6 +163,7 @@ window.addEventListener('hashchange', () => {
   }
 });
 
+// Select the initial target from the URL and attempt its hint visibility update.
 const hashTargetKey = getTargetKeyFromHash(TARGETS);
 if (hashTargetKey) {
   setSelectedTargetKey(hashTargetKey);
