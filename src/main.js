@@ -55,9 +55,11 @@ const toggleHintLayer = () => {
   const baseHash = targetKey.toLowerCase();
   const hint1Hash = `${baseHash}-hint1`;
   const hint2Hash = `${baseHash}-hint2`;
+  const hint3Hash = `${baseHash}-hint3`;
 
   const showHint1 = hashValue === hint1Hash;
   const showHint2 = hashValue === hint2Hash;
+  const showHint3 = hashValue === hint3Hash;
 
   let updated = false;
 
@@ -71,7 +73,12 @@ const toggleHintLayer = () => {
     console.log(`Hint 2 visibility for ${targetKey}: ${showHint2}`);
   }
 
-  if (showHint2) {
+  if (target.hint3) {
+    updated = setLayerVisible(target.hint3, showHint3) || updated;
+    console.log(`Hint 3 visibility for ${targetKey}: ${showHint3}`);
+  }
+
+  if (showHint3) {
     giveUpController.schedule(targetKey);
   } else {
     giveUpController.clear();

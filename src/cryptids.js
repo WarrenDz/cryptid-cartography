@@ -10,6 +10,7 @@ const cryptids = {
         image: bigfootImage,
         hint1: 'bigfoot-hint1',
         hint2: 'bigfoot-hint2',
+        hint3: 'bigfoot-hint3',
         latitude: 41.421376,
         longitude: -123.757542,
         threshold: 2000
@@ -20,6 +21,7 @@ const cryptids = {
         image: mothmanImage,
         hint1: 'mothman-hint1',
         hint2: 'mothman-hint2',
+        hint3: 'mothman-hint3',
         latitude: 38.903831,
         longitude: -82.075155,
         threshold: 250
@@ -30,6 +32,7 @@ const cryptids = {
         image: chupacabraImage,
         hint1: 'chupacabra-hint1',
         hint2: 'chupacabra-hint2',
+        hint3: 'chupacabra-hint3',
         latitude: 30.537272,
         longitude: -100.236945,
         threshold: 25000
@@ -40,6 +43,7 @@ const cryptids = {
         image: champyImage,
         hint1: 'champy-hint1',
         hint2: 'champy-hint2',
+        hint3: 'champy-hint3',
         latitude: 44.305864,
         longitude: -73.324522,
         threshold: 1500

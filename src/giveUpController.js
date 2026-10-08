@@ -51,7 +51,7 @@ export const createGiveUpController = ({
         return;
       }
 
-      if (typeof getHashValue === 'function' && getHashValue() !== `${targetKey}-hint2`) {
+      if (typeof getHashValue === 'function' && getHashValue() !== `${targetKey}-hint3`) {
         return;
       }
 
