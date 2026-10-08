@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="./src/style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cryptid Cartography</title>
-  </head>
-  <body>
-    <!-- Load my script -->
-    <script type="module" src="./src/main.js"></script>
-    <div>
-      <!-- TODO: would rather add a scene and load the firefly without needing an item-id -->
-      <arcgis-scene id="overviewScene" item-id="e306267a918d4658b595f60db1622586" hide-attribution></arcgis-scene>
-      <div id="flashlightOverlay"></div>
-      <arcgis-map item-id="0d6292091b754cefaaf49fc8630513c7"></arcgis-map>
-    </div>
-  </body>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="./src/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Eczar:wght@400..800&family=Faculty+Glyphic&display=swap"
+    rel="stylesheet">
+  <title>Cryptid Cartography</title>
+</head>
+
+<body>
+  <!-- Load my script -->
+  <script type="module" src="./src/main.js"></script>
+  <div>
+    <!-- TODO: would rather add a scene and load the firefly without needing an item-id -->
+    <arcgis-scene id="overviewScene" item-id="e306267a918d4658b595f60db1622586" hide-attribution></arcgis-scene>
+    <div id="flashlightOverlay"></div>
+    <arcgis-map item-id="0d6292091b754cefaaf49fc8630513c7"></arcgis-map>
+  </div>
+</body>
+
 </html>
