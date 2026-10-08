@@ -10,8 +10,8 @@ const cryptids = {
         image: bigfootImage,
         hint1: 'bigfoot-hint1',
         hint2: 'bigfoot-hint2',
-        latitude: 41.44026,
-        longitude: -123.701818,
+        latitude: 41.421376,
+        longitude: -123.757542,
         threshold: 2000
     },
     mothman: {
@@ -30,8 +30,8 @@ const cryptids = {
         image: chupacabraImage,
         hint1: 'chupacabra-hint1',
         hint2: 'chupacabra-hint2',
-        latitude: 19.664642,
-        longitude: -97.484251,
+        latitude: 30.537272,
+        longitude: -100.236945,
         threshold: 25000
     },
     champy: {
