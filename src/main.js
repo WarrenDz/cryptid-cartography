@@ -103,7 +103,7 @@ const checkProximityAndUpdate = () => {
   if (!result) return;
 
   if (lastProximityState?.targetKey === targetKey &&
-      lastProximityState.isNear === result.isNear) return;
+    lastProximityState.isNear === result.isNear) return;
 
   if (result.isNear) {
     showPopup(target);
@@ -122,7 +122,10 @@ const attachViewListeners = () => {
   }
 
   view.watch("center", checkProximityAndUpdate);
-  view.when(() => applyHashBookmark(view));
+  view.when(() => {
+    toggleHintLayer();
+    return applyHashBookmark(view);
+  });
   checkProximityAndUpdate();
   ensurePopup();
   return true;
