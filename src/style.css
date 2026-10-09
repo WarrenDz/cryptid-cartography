@@ -1,3 +1,4 @@
+/* Full-screen map canvas */
 html,
 body {
   margin: 0;
@@ -9,6 +10,7 @@ arcgis-map {
   width: 100%;
 }
 
+/* Font utility classes */
 .faculty-glyphic-regular {
   font-family: "Faculty Glyphic", sans-serif;
   font-weight: 400;
@@ -22,6 +24,7 @@ arcgis-map {
   font-style: normal;
 }
 
+/* Fixed overview globe */
 #overviewScene {
   position: fixed;
   top: 16px;
@@ -42,7 +45,6 @@ arcgis-map {
     right: 12px;
   }
 }
-
 
 #overviewDiv {
   width: 200px;
@@ -66,11 +68,11 @@ arcgis-map {
   transition: background 40ms linear;
 }
 
-/* Popup that animates up from the bottom-right */
+/* Target popup: entrance state, card, and supporting content */
 .target-popup {
   position: fixed;
   right: 18px;
-  bottom: 18px;
+  bottom: 25px;
   z-index: 2000;
   transform: translateY(120%);
   opacity: 0;
@@ -91,20 +93,17 @@ arcgis-map {
 
 .target-popup__card {
   min-width: 280px;
-  max-width: 380px;
+  max-width: 525px;
   background: #13181b;
-  box-shadow: 0 8px 30px rgba(19, 24, 27,0.3);
-  padding: 12px;
+  box-shadow: 8px 10px 10px rgb(12, 12, 12);
+  padding: 15px;
   display: flex;
   flex-direction: column;
   gap: 8px;
-}
-
-.target-popup__card {
   position: relative;
   /* slight angle */
-  transform: rotate(-4deg);
-  transition: transform 260ms ease;
+  transform: rotate(-3deg);
+  transition: transform 350ms ease;
   z-index: 2001; /* ensure card (and its textbox) sit above the image */
 }
 
@@ -135,13 +134,13 @@ arcgis-map {
 
 .target-popup__image-wrap {
   position: absolute;
-  right: 25px;
-  bottom: 50px; /* sits beneath the card */
+  right: 100px;
+  bottom: 100px; /* sits beneath the card */
   width: 280px;
   height: 500px;
   overflow: hidden;
   border-radius: 10px;
-  box-shadow: 0 8px 24px rgba(19, 24, 27, 0.25);
+  box-shadow: 8px 10px 10px rgb(12, 12, 12);
   transform: rotate(4deg);
   z-index: 1998; /* lower than the card */
   pointer-events: none; /* allow clicks to reach the card/textbox above */
@@ -156,21 +155,27 @@ arcgis-map {
 
 .target-popup__title {
   margin: 0;
-  font-size: 24px;
+  font-size: 28px;
   font-family: "Faculty Glyphic", sans-serif;
-  font-weight: 600;
+  font-weight: 500;
   color: #ff6b59;
 }
 
 .target-popup__description {
   margin: 0;
-  font-size: 16px;
+  font-size: 18px;
   font-family: "Eczar", serif;
-  font-weight: 400;
+  font-weight: 300;
   color: #fffef0;
+  line-height: 1.4;
 }
 
+/* Centered control for ending the current search */
 .give-up-button {
+  font-size: 22px;
+  font-family: "Faculty Glyphic", sans-serif;
+  font-weight: 500;
+  color: #fffef0;
   position: fixed;
   left: 50%;
   bottom: 100px;
@@ -178,15 +183,15 @@ arcgis-map {
   z-index: 30;
   padding: 10px 16px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  border: 1px solid #fffef0;
   background: rgba(19, 24, 27, 0.9);
-  color: #fff;
-  font-size: 14px;
-  font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 8px 22px rgba(19, 24, 27, 0.35);
+  box-shadow: 0px 5px 5px rgb(12, 12, 12);
 }
 
 .give-up-button:hover {
   background: rgba(19, 24, 27, 0.94);
+  color: #ff6b59;
+  font-size: 24px;
+  box-shadow: 5px 10px 10px rgb(12, 12, 12);
 }
