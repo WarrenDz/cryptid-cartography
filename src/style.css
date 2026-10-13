@@ -104,7 +104,7 @@ arcgis-map {
   /* slight angle */
   transform: rotate(-3deg);
   transition: transform 350ms ease;
-  z-index: 2001; /* ensure card (and its textbox) sit above the image */
+  z-index: 1995; /* ensure card (and its textbox) sit above the image */
 }
 
 .target-popup__label {
@@ -134,13 +134,12 @@ arcgis-map {
 
 .target-popup__image-wrap {
   position: absolute;
-  right: 100px;
-  bottom: 100px; /* sits beneath the card */
-  width: 280px;
-  height: 500px;
+  right: 75px;
+  bottom: 200px; /* sits beneath the card */
+  width: 450px;
+  height: 450px;
   overflow: hidden;
   border-radius: 10px;
-  box-shadow: 8px 10px 10px rgb(12, 12, 12);
   transform: rotate(4deg);
   z-index: 1998; /* lower than the card */
   pointer-events: none; /* allow clicks to reach the card/textbox above */
