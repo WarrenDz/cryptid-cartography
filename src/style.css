@@ -169,17 +169,24 @@ arcgis-map {
   line-height: 1.4;
 }
 
-/* Centered control for ending the current search */
-.give-up-button {
-  font-size: 22px;
-  font-family: "Faculty Glyphic", sans-serif;
-  font-weight: 500;
-  color: #fffef0;
+/* Bottom-center map controls */
+.map-controls {
   position: fixed;
   left: 50%;
   bottom: 100px;
   transform: translateX(-50%);
   z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.map-control-button {
+  font-size: 22px;
+  font-family: "Faculty Glyphic", sans-serif;
+  font-weight: 500;
+  color: #fffef0;
   padding: 10px 16px;
   border-radius: 999px;
   border: 1px solid #fffef0;
@@ -188,7 +195,7 @@ arcgis-map {
   box-shadow: 0px 5px 5px rgb(12, 12, 12);
 }
 
-.give-up-button:hover {
+.map-control-button:hover {
   background: rgba(19, 24, 27, 0.94);
   color: #ff6b59;
   font-size: 24px;

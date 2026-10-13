@@ -15,6 +15,10 @@ const TARGETS = cryptids;
 
 const GIVE_UP_DELAY_MS = 3000;
 
+const mapControls = document.createElement('div');
+mapControls.className = 'map-controls';
+document.body.appendChild(mapControls);
+
 let selectedTargetKey = Object.keys(TARGETS)[0] || null;
 
 const getSelectedTargetKey = () => selectedTargetKey;
@@ -27,9 +31,17 @@ const setSelectedTargetKey = (key) => {
   return true;
 };
 
+const resetMapButton = document.createElement('button');
+resetMapButton.type = 'button';
+resetMapButton.className = 'map-control-button reset-map-button';
+resetMapButton.textContent = 'Reset map';
+resetMapButton.setAttribute('aria-label', 'Reset map to the current bookmark');
+mapControls.appendChild(resetMapButton);
+
 // Offer a reveal bookmark after the final hint's delay.
 const giveUpController = createGiveUpController({
   delayMs: GIVE_UP_DELAY_MS,
+  container: mapControls,
   getCurrentTargetKey: getSelectedTargetKey,
   getHashValue,
   onGiveUp: async (targetKey) => {
@@ -45,6 +57,11 @@ const giveUpController = createGiveUpController({
 const applyHashBookmark = (view) => {
   return goToBookmarkByName(view, getHashValue());
 };
+
+resetMapButton.addEventListener('click', () => {
+  const view = getMapElement()?.view;
+  if (view) applyHashBookmark(view);
+});
 
 // Show only the active target's matching hint and manage the reveal timer.
 const toggleHintLayer = () => {

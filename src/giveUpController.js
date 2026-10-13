@@ -2,6 +2,7 @@
 export const createGiveUpController = ({
   delayMs = 3000,
   buttonId = 'give-up-button',
+  container = document.body,
   getCurrentTargetKey,
   getHashValue,
   onGiveUp,
@@ -28,7 +29,7 @@ export const createGiveUpController = ({
     button.id = buttonId;
     button.type = 'button';
     button.textContent = 'Give up?';
-    button.className = 'give-up-button';
+    button.className = 'map-control-button give-up-button';
 
     button.addEventListener('click', async () => {
       if (typeof onGiveUp === 'function') {
@@ -36,7 +37,7 @@ export const createGiveUpController = ({
       }
     });
 
-    document.body.appendChild(button);
+    container.appendChild(button);
   };
 
   // Reset both the pending timer and the visible button.
