@@ -19,6 +19,31 @@ const mapControls = document.createElement('div');
 mapControls.className = 'map-controls';
 document.body.appendChild(mapControls);
 
+const zoomControls = document.createElement('div');
+zoomControls.className = 'zoom-controls';
+document.body.appendChild(zoomControls);
+
+const createZoomButton = (label, delta, accessibleLabel) => {
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'map-control-button zoom-control-button';
+  const icon = document.createElement('span');
+  icon.className = 'zoom-control-icon';
+  icon.textContent = label;
+  button.appendChild(icon);
+  button.setAttribute('aria-label', accessibleLabel);
+  button.title = accessibleLabel;
+  button.addEventListener('click', () => {
+    const view = getMapElement()?.view;
+    if (!view || !Number.isFinite(view.zoom)) return;
+    view.zoom += delta;
+  });
+  zoomControls.appendChild(button);
+};
+
+createZoomButton('+', 1, 'Zoom in');
+createZoomButton('\u2212', -1, 'Zoom out');
+
 let selectedTargetKey = Object.keys(TARGETS)[0] || null;
 
 const getSelectedTargetKey = () => selectedTargetKey;
