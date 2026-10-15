@@ -5,7 +5,7 @@ import { getMapElement, setLayerVisible, checkProximity } from './proximityCheck
 import { ensurePopup, showPopup, hidePopup } from './popUp.js'
 import './overviewGlobe.js'
 import { getHashValue, getTargetKeyFromHash } from './hashUtils.js'
-import { goToBookmarkByName, goToBookmarkForTarget } from './bookmarks.js'
+import { goToBookmarkByName } from './bookmarks.js'
 import { createGiveUpController } from './giveUpController.js'
 import "@arcgis/core/assets/esri/themes/dark/main.css";
 import "@arcgis/map-components/components/arcgis-map";
@@ -74,7 +74,7 @@ const giveUpController = createGiveUpController({
     const target = TARGETS[targetKey];
     if (!view || !target) return;
 
-    await goToBookmarkForTarget(view, target, '-reveal');
+    await goToBookmarkByName(view, `${targetKey}-reveal`);
   },
 });
 
