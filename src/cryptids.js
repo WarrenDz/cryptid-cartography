@@ -3,6 +3,8 @@ import mothmanImage from './assets/Mothman-hero-reveal.png';
 import chupacabraImage from './assets/Chupacabra-hero-reveal.png';
 import champyImage from './assets/Champy-hero-reveal.png';
 
+const THRESHOLD_MULTIPLIER = 1.5;
+
 const cryptids = {
     bigfoot: {
         name: 'Bigfoot',
@@ -14,7 +16,7 @@ const cryptids = {
         hint3: 'bigfoot-hint3',
         latitude: 41.421376,
         longitude: -123.757542,
-        threshold: 2000
+        threshold: 2000*THRESHOLD_MULTIPLIER
     },
     mothman: {
         name: 'Mothman',
@@ -26,7 +28,7 @@ const cryptids = {
         hint3: 'mothman-hint3',
         latitude: 38.903831,
         longitude: -82.075155,
-        threshold: 250
+        threshold: 250*THRESHOLD_MULTIPLIER
     },
     chupacabra: {
         name: 'Chupacabra',
@@ -38,7 +40,7 @@ const cryptids = {
         hint3: 'chupacabra-hint3',
         latitude: 30.537272,
         longitude: -100.236945,
-        threshold: 25000
+        threshold: 25000*THRESHOLD_MULTIPLIER
     },
     champy: {
         name: 'Lake Champlain Monster (Champy)',
@@ -50,7 +52,7 @@ const cryptids = {
         hint3: 'champy-hint3',
         latitude: 44.305864,
         longitude: -73.324522,
-        threshold: 1500
+        threshold: 1500*THRESHOLD_MULTIPLIER
     }
 };
 

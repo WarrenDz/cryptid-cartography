@@ -28,7 +28,7 @@ export const createGiveUpController = ({
     const button = document.createElement('button');
     button.id = buttonId;
     button.type = 'button';
-    button.textContent = 'Give up?';
+    button.textContent = 'Reveal?';
     button.className = 'map-control-button give-up-button';
 
     button.addEventListener('click', async () => {
