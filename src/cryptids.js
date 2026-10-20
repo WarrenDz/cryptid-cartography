@@ -8,7 +8,7 @@ const THRESHOLD_MULTIPLIER = 1.5;
 const cryptids = {
     bigfoot: {
         name: 'Bigfoot',
-        description: 'It’s none other than Bigfoot, also known as Sasquatch. The infamous film footage shot at this location captured a tall, hairy creature moving on two legs through the woods along a riverbank. Many cultures around the world have a similar legend of large, hairy, wild human-like beings, which perhaps helps to explain why Bigfoot became such a phenomenon in the U.S. Entire clubs are dedicated to proving the existence of Bigfoot, though they have yet to do so conclusively.',
+        description: 'It’s none other than Bigfoot, also known as Sasquatch or Yeti. The infamous film footage shot at this location captured a tall, hairy creature moving on two legs through the woods along a riverbank. Many cultures around the world have a similar legend of large, hairy, wild human-like beings, which perhaps helps to explain why Bigfoot became such a phenomenon in the U.S. Entire clubs are dedicated to proving the existence of Bigfoot, though they have yet to do so conclusively.',
         image: bigfootImage,
         imageAlt: 'A stylized silhouette illustration of Bigfoot. The figure is covered in fur, with long arms hanging below the waist, broad shoulders, and oversized feet. The creature is shown mid-stride with one foot raised and its head turned toward the viewer. Bright red eyes stand out against the otherwise dark body, and sparse light-colored highlights define the fur texture and contours.',
         hint1: 'bigfoot-hint1',
@@ -32,7 +32,7 @@ const cryptids = {
     },
     chupacabra: {
         name: 'Chupacabra',
-        description: 'This pesky critter is the Chupacabra. Descriptions vary based on region. In the Southwestern United States, sightings most often take the form of a hairless, dog-like creature with large fangs. Much evidence — including purported Chupacabra corpses — suggests mangy coyotes infected with a certain parasite are responsible for so-called Chupacabra sightings.',
+        description: 'This pesky critter is the Chupacabra. Descriptions vary based on region. In the Southwestern United States, sightings most often take the form of a hairless, dog-like creature with large fangs. Investigations on reported Chupacabras carcasses suggest the creatures are likely coyotes infected with mange or some other kind of parasite.',
         image: chupacabraImage,
         imageAlt: 'A stylized silhouette illustration of Chupacabra. The figure is hairless and dog-like with large fangs. Its body is lean and muscular, and it is depicted in a crouched, predatory stance.',
         hint1: 'chupacabra-hint1',
